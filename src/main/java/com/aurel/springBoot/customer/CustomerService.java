@@ -1,8 +1,8 @@
 package com.aurel.springBoot.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -16,7 +16,15 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    List<Customer> getCustomer() {
+    List<Customer> getCustomers() {
         return customerRepo.getCustomers();
+    }
+
+    Customer getCustomer(Long id) {
+        return getCustomers()
+                .stream()
+                .filter(customer -> customer.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Customer not found"));
     }
 }

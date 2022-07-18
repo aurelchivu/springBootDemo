@@ -8,7 +8,7 @@ public class CustomerRepository implements CustomerRepo{
     public List<Customer> getCustomers() {
         // TODO connect to real db
         return List.of(
-            new Customer(1L, "TODO: connect to real db", "todo")
+            new Customer(1L, "TODO: connect to real db", "todo@gmail.com", "todo")
         );
     }
 }
