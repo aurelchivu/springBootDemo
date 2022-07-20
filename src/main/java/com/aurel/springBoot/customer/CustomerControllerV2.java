@@ -1,8 +1,10 @@
 package com.aurel.springBoot.customer;
 
+import com.aurel.springBoot.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -23,13 +25,17 @@ public class CustomerControllerV2 {
         return customerService.getCustomers();
     }
 
-    @GetMapping(path="{customerId}")
+    @GetMapping(path="{customerId}/exception")
     Customer getCustomer(@PathVariable("customerId") Long id) {
+        throw new ApiRequestException("ApiRequestException request for customer " + id);
+
+    }@GetMapping(path="{customerId}")
+    Customer getCustomerException(@PathVariable("customerId") Long id) {
         return customerService.getCustomer(id);
     }
 
     @PostMapping
-    void createNewCustomer(@RequestBody Customer customer) {
+    void createNewCustomer(@Valid @RequestBody Customer customer) {
         System.out.println("POST REQUEST...");
         System.out.println(customer);
     }
