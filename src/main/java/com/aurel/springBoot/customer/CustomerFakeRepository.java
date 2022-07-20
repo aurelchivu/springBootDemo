@@ -10,7 +10,7 @@ public class CustomerFakeRepository implements CustomerRepo{
         return Arrays.asList(
                 new Customer(1L, "Aurel Chivu", "aurel@gmail.com", "password"),
                 new Customer(2L, "James Bond", "james@gmail.com", "123456"),
-                new Customer(3L, "James Bond", "james@gmail.com", "123456")
+                new Customer(3L, "James Bond", "email@gmail.com", "123456")
         );
     }
 }

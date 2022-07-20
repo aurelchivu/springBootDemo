@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table
@@ -19,9 +21,13 @@ public class Customer {
             generator = "customer_sequence"
     )
     private final Long id;
+    @NotBlank(message = "Name must not be empty")
     private final String name;
+    @NotBlank(message = "Email must not be empty")
+    @Email
     private final String email;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @NotBlank(message = "Password must not be empty")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private final String password;
 
     public Customer(Long id, String name, String email, String password) {
@@ -54,6 +60,7 @@ public class Customer {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
