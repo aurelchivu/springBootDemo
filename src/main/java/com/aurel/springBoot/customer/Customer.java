@@ -20,21 +20,24 @@ public class Customer {
             strategy = GenerationType.SEQUENCE,
             generator = "customer_sequence"
     )
-    private final Long id;
+    private Long id;
     @NotBlank(message = "Name must not be empty")
-    private final String name;
+    private String name;
     @NotBlank(message = "Email must not be empty")
     @Email
-    private final String email;
+    private String email;
     @NotBlank(message = "Password must not be empty")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private final String password;
+    private String password;
 
     public Customer(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public Customer() {
     }
 
     @JsonProperty("customerId")

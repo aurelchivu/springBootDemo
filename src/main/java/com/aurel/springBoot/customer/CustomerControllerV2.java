@@ -25,13 +25,14 @@ public class CustomerControllerV2 {
         return customerService.getCustomers();
     }
 
-    @GetMapping(path="{customerId}/exception")
+    @GetMapping(path="{customerId}")
     Customer getCustomer(@PathVariable("customerId") Long id) {
-        throw new ApiRequestException("ApiRequestException request for customer " + id);
-
-    }@GetMapping(path="{customerId}")
-    Customer getCustomerException(@PathVariable("customerId") Long id) {
         return customerService.getCustomer(id);
+    }
+
+    @GetMapping(path="{customerId}/exception")
+    Customer getCustomerException(@PathVariable("customerId") Long id) {
+        throw new ApiRequestException("ApiRequestException for customer " + id);
     }
 
     @PostMapping
