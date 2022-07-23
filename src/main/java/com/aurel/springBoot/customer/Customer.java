@@ -2,6 +2,10 @@ package com.aurel.springBoot.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -9,6 +13,10 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Customer {
     @Id
     @SequenceGenerator(
@@ -30,16 +38,6 @@ public class Customer {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public Customer(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public Customer() {
-    }
-
     @JsonProperty("customerId")
     public Long getId() {
         return id;
@@ -58,13 +56,4 @@ public class Customer {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

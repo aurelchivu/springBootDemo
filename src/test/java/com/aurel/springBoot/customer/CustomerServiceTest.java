@@ -39,9 +39,10 @@ class CustomerServiceTest {
     void getCustomers() {
         // given
         Customer monique = new Customer(1L, "monique", "monique@gmail.com", "hello" );
-        Customer alex = new Customer(3L, "alex", "alex@gmail.com", "hello" );
+        Customer alex = new Customer(2L, "alex", "alex@gmail.com", "hello" );
+        Customer john = new Customer(3L, "john", "john@gmail.com", "hello" );
 
-        customerRepository.saveAll(Arrays.asList(monique, alex));
+        customerRepository.saveAll(Arrays.asList(monique, alex, john));
 
         // when
         List<Customer> customers = underTest.getCustomers();
