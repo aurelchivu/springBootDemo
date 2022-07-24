@@ -2,6 +2,7 @@ package com.aurel.springBoot.customer;
 
 import com.aurel.springBoot.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,17 +36,20 @@ public class CustomerControllerV2 {
     @PostMapping
     void createNewCustomer(@Valid @RequestBody Customer customer) {
         System.out.println("POST REQUEST...");
+        customerService.createCustomer(customer);
         System.out.println(customer);
     }
 
-    @PutMapping
-    void updateCustomer(@RequestBody Customer customer) {
+    @PutMapping(path="{customerId}")
+    void updateCustomer(@RequestBody Customer customer, @PathVariable("customerId") Long id) {
         System.out.println("UPDATE REQUEST...");
+        customerService.updateCustomer(id, customer);
         System.out.println(customer);
     }
 
     @DeleteMapping(path="{customerId}")
     void deleteCustomer(@PathVariable("customerId") Long id) {
         System.out.println("DELETE REQUEST FOR CUSTOMER WITH ID " + id);
+        customerService.deleteCustomer(id);
     }
 }
